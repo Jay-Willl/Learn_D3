@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>intro1</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<svg id="test1"></svg>
+<script>
+    const svg = d3.select('#test1');
+    svg.append("circle")
+        .attr("cx", 0).attr("cy", 0).attr("r", 40).style("fill", "blue");
+    svg.append("circle")
+        .attr("cx", 140).attr("cy", 70).attr("r", 40).style("fill", "red");
+    svg.append("circle")
+        .attr("cx", 450).attr("cy", 100).attr("r", 40).style("fill", "green");
+</script>
+</body>
+</html>

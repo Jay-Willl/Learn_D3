@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>intro3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<svg id="test1" height="200" width="500"></svg>
+<hr/>
+<div id="test2"></div>
+<hr/>
+<script>
+    var svg = d3.select("#test1");
+    // create scale
+    var x = d3.scaleLinear()
+        .domain([0, 100])       // This is the min and the max of the data: 0 to 100 if percentages
+        .range([0, 400]);       // This is the corresponding value I want in Pixel
+    var y = d3.scaleLinear()
+        .domain([0, 100])
+        .range([0, 250]);
+    console.log(x(25));
+    // show axis
+    svg.call(d3.axisBottom(x));
+    svg.append("circle")
+        .attr("cx", x(10)).attr("cy", 100).attr("r", 40).style("fill", "blue");
+    svg.append("circle")
+        .attr("cx", x(30)).attr("cy", 100).attr("r", 40).style("fill", "red");
+    svg.append("circle")
+        .attr("cx", x(50)).attr("cy", 100).attr("r", 40).style("fill", "green");
+
+    var axes = d3.select('#test2');
+    var margin = {top: 10, bottom: 30, left: 30, right: 40};
+    var width = 450 - margin.left - margin.right;
+    var height = 400 - margin.top - margin.bottom;
+    // append svg and create axes
+    var svg2 = axes
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    // create axes
+    var xaxis = d3.scaleLinear()
+        .domain([0, 100])
+        .range([0, width]);
+    var yaxis = d3.scaleLinear()
+        .domain([0, 100])
+        .range([height, 0]);
+    svg2.append('g')
+        .attr("transform", "translate(0, " + height + ")")
+        .call(d3.axisBottom(xaxis));
+    svg2.append('g')
+        .call(d3.axisLeft(yaxis));
+</script>
+</body>
+</html>
